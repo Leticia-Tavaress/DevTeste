@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBBBE4B4-CB12-4A51-9B97-2587FF6CE366}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroEpi.WebUI", "CadastroEpi\CadastroEpi.WebUI.csproj", "{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroEpi.Domain", "CadastroEpi.Domain\CadastroEpi.Domain.csproj", "{421B3973-495F-451F-869C-B13AF8822919}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82AA7FE-2F30-4A73-8E4E-5E0D387424A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421B3973-495F-451F-869C-B13AF8822919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421B3973-495F-451F-869C-B13AF8822919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421B3973-495F-451F-869C-B13AF8822919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421B3973-495F-451F-869C-B13AF8822919}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27A18877-EDAB-4818-BCCE-23EA71960512}
+	EndGlobalSection
+EndGlobal

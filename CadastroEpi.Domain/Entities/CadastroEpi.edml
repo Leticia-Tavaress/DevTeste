@@ -1,0 +1,346 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CadastroEpi.Domain.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EntitiesStoreContainer">
+          <EntitySet Name="Funcionarios" EntityType="CadastroEpi.Domain.Model.Store.Funcionarios" store:Type="Tables" Table="Funcionarios" />
+          <EntitySet Name="Empresas" EntityType="CadastroEpi.Domain.Model.Store.Empresas" store:Type="Tables" Table="Empresas" />
+          <EntitySet Name="Funcaos" EntityType="CadastroEpi.Domain.Model.Store.Funcaos" store:Type="Tables" Table="Funcaos" />
+          <EntitySet Name="Epis" EntityType="CadastroEpi.Domain.Model.Store.Epis" store:Type="Tables" Table="Epis" />
+          <EntitySet Name="FuncionarioEpis" EntityType="CadastroEpi.Domain.Model.Store.FuncionarioEpis" store:Type="Tables" Table="FuncionarioEpis" />
+          <AssociationSet Name="FK_Funcaos_Empresas" Association="CadastroEpi.Domain.Model.Store.FK_Funcaos_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Funcaos" EntitySet="Funcaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionarios_Funcaos" Association="CadastroEpi.Domain.Model.Store.FK_Funcionarios_Funcaos">
+            <End Role="Funcaos" EntitySet="Funcaos" />
+            <End Role="Funcionarios" EntitySet="Funcionarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FuncionarioEpis_Funcionarios" Association="CadastroEpi.Domain.Model.Store.FK_FuncionarioEpis_Funcionarios">
+            <End Role="Funcionarios" EntitySet="Funcionarios" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FuncionarioEpis_Epis" Association="CadastroEpi.Domain.Model.Store.FK_FuncionarioEpis_Epis">
+            <End Role="Epis" EntitySet="Epis" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Funcionarios">
+          <Key>
+            <PropertyRef Name="FuncionarioId" />
+          </Key>
+          <Property Name="FuncionarioId" Type="int" Nullable="false" />
+          <Property Name="NomeFuncionario" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Cpf" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="FuncaoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="EmpresaId" />
+          </Key>
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+          <Property Name="RazaoSocial" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="TipoIdentificador" Type="int" Nullable="false" />
+          <Property Name="Identificador" Type="varchar" Nullable="false" MaxLength="14" devart:DefaultValue="" />
+        </EntityType>
+        <EntityType Name="Funcaos">
+          <Key>
+            <PropertyRef Name="FuncaoId" />
+          </Key>
+          <Property Name="FuncaoId" Type="int" Nullable="false" />
+          <Property Name="NomeFuncao" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Epis">
+          <Key>
+            <PropertyRef Name="EpiId" />
+          </Key>
+          <Property Name="EpiId" Type="int" Nullable="false" />
+          <Property Name="NomEpi" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="DatInclusao" Type="datetimeoffset" Nullable="false" />
+          <Property Name="DatValidade" Type="varchar" MaxLength="30" />
+          <Property Name="NumCa" Type="int" Nullable="false" />
+          <Property Name="NumProcesso" Type="varchar" MaxLength="25" />
+          <Property Name="NomFabricante" Type="varchar" MaxLength="255" />
+          <Property Name="CnpjFabricante" Type="varchar" Nullable="false" MaxLength="14" />
+        </EntityType>
+        <EntityType Name="FuncionarioEpis">
+          <Key>
+            <PropertyRef Name="FuncionarioEpiId" />
+          </Key>
+          <Property Name="FuncionarioEpiId" Type="int" Nullable="false" />
+          <Property Name="DatEntrega" Type="datetimeoffset" Nullable="false" />
+          <Property Name="DatTroca" Type="datetimeoffset" />
+          <Property Name="FuncionarioId" Type="int" Nullable="false" />
+          <Property Name="EpiId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Funcaos_Empresas">
+          <End Role="Empresas" Type="CadastroEpi.Domain.Model.Store.Empresas" Multiplicity="1" />
+          <End Role="Funcaos" Type="CadastroEpi.Domain.Model.Store.Funcaos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="EmpresaId" />
+            </Principal>
+            <Dependent Role="Funcaos">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionarios_Funcaos">
+          <End Role="Funcaos" Type="CadastroEpi.Domain.Model.Store.Funcaos" Multiplicity="1" />
+          <End Role="Funcionarios" Type="CadastroEpi.Domain.Model.Store.Funcionarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcaos">
+              <PropertyRef Name="FuncaoId" />
+            </Principal>
+            <Dependent Role="Funcionarios">
+              <PropertyRef Name="FuncaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FuncionarioEpis_Funcionarios">
+          <End Role="Funcionarios" Type="CadastroEpi.Domain.Model.Store.Funcionarios" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.Store.FuncionarioEpis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionarios">
+              <PropertyRef Name="FuncionarioId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="FuncionarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FuncionarioEpis_Epis">
+          <End Role="Epis" Type="CadastroEpi.Domain.Model.Store.Epis" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.Store.FuncionarioEpis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epis">
+              <PropertyRef Name="EpiId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="EpiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CadastroEpi.Domain.Model" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" ed:Namespace="CadastroEpi.Db" annotation:LazyLoadingEnabled="true" ed:Guid="0494e20c-623a-4917-8e51-2b80fed63742">
+          <EntitySet Name="Funcionarios" EntityType="CadastroEpi.Domain.Model.Funcionario" />
+          <EntitySet Name="Empresas" EntityType="CadastroEpi.Domain.Model.Empresa" />
+          <EntitySet Name="Funcaos" EntityType="CadastroEpi.Domain.Model.Funcao" />
+          <EntitySet Name="Epis" EntityType="CadastroEpi.Domain.Model.Epi" />
+          <EntitySet Name="FuncionarioEpis" EntityType="CadastroEpi.Domain.Model.FuncionarioEpi" />
+          <AssociationSet Name="Empresa_FuncaoSet" Association="CadastroEpi.Domain.Model.Empresa_Funcao">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="Funcoes" EntitySet="Funcaos" />
+          </AssociationSet>
+          <AssociationSet Name="Funcao_FuncionarioSet" Association="CadastroEpi.Domain.Model.Funcao_Funcionario">
+            <End Role="Funcao" EntitySet="Funcaos" />
+            <End Role="Funcionarios" EntitySet="Funcionarios" />
+          </AssociationSet>
+          <AssociationSet Name="Funcionario_FuncionarioEpiSet" Association="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi">
+            <End Role="Funcionario" EntitySet="Funcionarios" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+          <AssociationSet Name="Epi_FuncionarioEpiSet" Association="CadastroEpi.Domain.Model.Epi_FuncionarioEpi">
+            <End Role="Epi" EntitySet="Epis" />
+            <End Role="FuncionarioEpis" EntitySet="FuncionarioEpis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Funcionario" ed:Guid="ee01ffa0-9865-4ae6-8af9-245714af77e2">
+          <Key>
+            <PropertyRef Name="FuncionarioId" />
+          </Key>
+          <Property Name="FuncionarioId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="ace8f439-165a-4212-abf3-860eaf111b60" />
+          <Property Name="NomeFuncionario" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="c4ca9ceb-866d-423c-ac32-d1b3aa99600d" />
+          <Property Name="Cpf" Type="String" Nullable="false" MaxLength="12" ed:ValidateMaxLength="12" ed:ValidateRequired="true" ed:Guid="1584809d-69fa-423d-af67-8ae3baf3effd" />
+          <Property Name="FuncaoId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="826af9a0-28f2-451e-8110-626561f12bdb" />
+          <NavigationProperty Name="Funcao" Relationship="CadastroEpi.Domain.Model.Funcao_Funcionario" FromRole="Funcionarios" ToRole="Funcao" ed:Guid="ce939eea-9da0-4296-960d-bfd598846073" />
+          <NavigationProperty Name="FuncionarioEpis" Relationship="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi" FromRole="Funcionario" ToRole="FuncionarioEpis" ed:Guid="19cb603e-2660-41d6-a06c-dd065f062eaf" />
+        </EntityType>
+        <EntityType Name="Empresa" ed:Guid="01b30b8b-6068-48c1-8516-46368b9f16e9">
+          <Key>
+            <PropertyRef Name="EmpresaId" />
+          </Key>
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="32b3832b-5857-4653-9487-2618375ba3fe" />
+          <Property Name="RazaoSocial" Type="String" Nullable="false" MaxLength="200" ed:ValidateMaxLength="200" ed:ValidateRequired="true" ed:Guid="a482c2b0-6544-48ff-a1e5-588d05d74a13" />
+          <Property Name="TipoIdentificador" Type="CadastroEpi.Domain.Model.TipoIdentificador" Nullable="false" ed:ValidateRequired="true" ed:Guid="1cb1ac24-d973-4df8-b799-ee200d513d5d" />
+          <Property Name="Identificador" Type="String" Nullable="false" MaxLength="14" ed:ValidateMaxLength="14" ed:ValidateRequired="true" ed:Guid="551f6c8f-0cd6-4d71-a546-a1dcd67c7c6a" />
+          <NavigationProperty Name="Funcoes" Relationship="CadastroEpi.Domain.Model.Empresa_Funcao" FromRole="Empresa" ToRole="Funcoes" ed:Guid="ff4af81d-387a-4cf8-850d-881baa8a663b" />
+        </EntityType>
+        <EntityType Name="Funcao" ed:Guid="44166407-5a5d-48e9-aeff-1ceb5c6e7139">
+          <Key>
+            <PropertyRef Name="FuncaoId" />
+          </Key>
+          <Property Name="FuncaoId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="6b7eb8bb-6999-4a9c-b872-8d59cd1f333e" />
+          <Property Name="NomeFuncao" Type="String" Nullable="false" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="362b6eaa-7e46-4940-9dc6-449f13ba1c3d" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="9ad2b800-b860-47ed-9d4c-31dfca64b3e4" />
+          <NavigationProperty Name="Empresa" Relationship="CadastroEpi.Domain.Model.Empresa_Funcao" FromRole="Funcoes" ToRole="Empresa" ed:Guid="18d715d3-8380-46bb-b390-b026be305128" />
+          <NavigationProperty Name="Funcionarios" Relationship="CadastroEpi.Domain.Model.Funcao_Funcionario" FromRole="Funcao" ToRole="Funcionarios" ed:Guid="aac78334-1f5b-45a0-b62e-7511907c00a7" />
+        </EntityType>
+        <EntityType Name="Epi" ed:Guid="14cd74fa-4844-4633-9270-66eb15870b66">
+          <Key>
+            <PropertyRef Name="EpiId" />
+          </Key>
+          <Property Name="EpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="04d15f3f-4e53-4811-a052-0ae79772a19a" />
+          <Property Name="NomEpi" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="0229f479-15bb-44c0-9409-ce4f9ac184dc" />
+          <Property Name="DatInclusao" Type="DateTimeOffset" Nullable="false" ed:ValidateRequired="true" ed:Guid="f9525374-000c-40b2-bba5-2152940c0a1f" />
+          <Property Name="DatValidade" Type="String" ed:ValidateRequired="false" ed:Guid="d98c8457-c421-4650-a832-6b5c6a645c47" />
+          <Property Name="NumCa" Type="Int32" Nullable="false" ed:ValidateMaxValue="99999" ed:ValidateRequired="true" ed:Guid="d30e8c8c-4586-4c1c-beca-9054c795586f" />
+          <Property Name="NumProcesso" Type="String" MaxLength="25" ed:ValidateMaxLength="25" ed:ValidateRequired="false" ed:Guid="6b7db7fa-3eab-4008-9b69-04c7bb1787f2" />
+          <Property Name="NomFabricante" Type="String" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="bab26261-e155-4728-ade6-93dac74653d3" />
+          <Property Name="CnpjFabricante" Type="String" Nullable="false" MaxLength="14" ed:ValidateMaxLength="14" ed:ValidateRequired="true" ed:Guid="f7fb57ea-b39b-48c0-a07e-761d4c086528" />
+          <NavigationProperty Name="FuncionarioEpis" Relationship="CadastroEpi.Domain.Model.Epi_FuncionarioEpi" FromRole="Epi" ToRole="FuncionarioEpis" ed:Guid="8c1e1ac9-0eb0-42d1-a8a1-6084ba6eb86b" />
+        </EntityType>
+        <EntityType Name="FuncionarioEpi" ed:Guid="6639db58-6b78-4afe-ae32-b69a0e40a0bd">
+          <Key>
+            <PropertyRef Name="FuncionarioEpiId" />
+          </Key>
+          <Property Name="FuncionarioEpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="1937dcfa-1d3c-4e15-9a42-b7d4a105cb42" />
+          <Property Name="DatEntrega" Type="DateTimeOffset" Nullable="false" ed:ValidateRequired="true" ed:Guid="9a4a27a6-ebde-4dce-93b7-3e193a5fca3e" />
+          <Property Name="DatTroca" Type="DateTimeOffset" ed:ValidateRequired="false" ed:Guid="80f0c3f0-533c-4ae5-98df-6fb667231cf1" />
+          <Property Name="FuncionarioId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="95810ab9-6539-4c89-b85c-61c5da6ca74b" />
+          <Property Name="EpiId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="e41690ac-de2a-4d9c-83e5-7cabfacc829d" />
+          <NavigationProperty Name="Funcionario" Relationship="CadastroEpi.Domain.Model.Funcionario_FuncionarioEpi" FromRole="FuncionarioEpis" ToRole="Funcionario" ed:Guid="f7a80225-e24e-4dd8-a60a-8155c0facb6d" />
+          <NavigationProperty Name="Epi" Relationship="CadastroEpi.Domain.Model.Epi_FuncionarioEpi" FromRole="FuncionarioEpis" ToRole="Epi" ed:Guid="6bfa08bc-48dd-4c8d-85af-69f674a6dc1c" />
+        </EntityType>
+        <EnumType Name="TipoIdentificador" ed:Guid="dc7f9068-489c-447b-a2b4-2fc91f23cd71">
+          <Member Name="CNPJ" ed:Guid="8d75b4d3-4556-4eb1-a572-32983b9ed402" />
+          <Member Name="CPF" ed:Guid="32907e43-1009-4ba2-a886-60cbc7690b0c" />
+        </EnumType>
+        <Association Name="Empresa_Funcao" ed:Guid="f5717861-77b0-46c0-9f38-aa1da88f82e2">
+          <End Role="Empresa" Type="CadastroEpi.Domain.Model.Empresa" Multiplicity="1" />
+          <End Role="Funcoes" Type="CadastroEpi.Domain.Model.Funcao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="EmpresaId" />
+            </Principal>
+            <Dependent Role="Funcoes">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Funcao_Funcionario" ed:Guid="46aedf82-2136-4da0-8f67-9bbb2ebabde4">
+          <End Role="Funcao" Type="CadastroEpi.Domain.Model.Funcao" Multiplicity="1" />
+          <End Role="Funcionarios" Type="CadastroEpi.Domain.Model.Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcao">
+              <PropertyRef Name="FuncaoId" />
+            </Principal>
+            <Dependent Role="Funcionarios">
+              <PropertyRef Name="FuncaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Funcionario_FuncionarioEpi" ed:Guid="df9bdd34-b0f0-4cef-b86c-99fa040511e4">
+          <End Role="Funcionario" Type="CadastroEpi.Domain.Model.Funcionario" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.FuncionarioEpi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="FuncionarioId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="FuncionarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Epi_FuncionarioEpi" ed:Guid="d62f5298-49f0-4dbf-b49f-85e78b30161b">
+          <End Role="Epi" Type="CadastroEpi.Domain.Model.Epi" Multiplicity="1" />
+          <End Role="FuncionarioEpis" Type="CadastroEpi.Domain.Model.FuncionarioEpi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epi">
+              <PropertyRef Name="EpiId" />
+            </Principal>
+            <Dependent Role="FuncionarioEpis">
+              <PropertyRef Name="EpiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Funcionarios">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.Funcionario">
+              <MappingFragment StoreEntitySet="Funcionarios">
+                <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
+                <ScalarProperty Name="NomeFuncionario" ColumnName="NomeFuncionario" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="FuncaoId" ColumnName="FuncaoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.Empresa">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+                <ScalarProperty Name="RazaoSocial" ColumnName="RazaoSocial" />
+                <ScalarProperty Name="TipoIdentificador" ColumnName="TipoIdentificador" />
+                <ScalarProperty Name="Identificador" ColumnName="Identificador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funcaos">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.Funcao">
+              <MappingFragment StoreEntitySet="Funcaos">
+                <ScalarProperty Name="FuncaoId" ColumnName="FuncaoId" />
+                <ScalarProperty Name="NomeFuncao" ColumnName="NomeFuncao" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Epis">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.Epi">
+              <MappingFragment StoreEntitySet="Epis">
+                <ScalarProperty Name="EpiId" ColumnName="EpiId" />
+                <ScalarProperty Name="NomEpi" ColumnName="NomEpi" />
+                <ScalarProperty Name="DatInclusao" ColumnName="DatInclusao" />
+                <ScalarProperty Name="DatValidade" ColumnName="DatValidade" />
+                <ScalarProperty Name="NumCa" ColumnName="NumCa" />
+                <ScalarProperty Name="NumProcesso" ColumnName="NumProcesso" />
+                <ScalarProperty Name="NomFabricante" ColumnName="NomFabricante" />
+                <ScalarProperty Name="CnpjFabricante" ColumnName="CnpjFabricante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuncionarioEpis">
+            <EntityTypeMapping TypeName="CadastroEpi.Domain.Model.FuncionarioEpi">
+              <MappingFragment StoreEntitySet="FuncionarioEpis">
+                <ScalarProperty Name="FuncionarioEpiId" ColumnName="FuncionarioEpiId" />
+                <ScalarProperty Name="DatEntrega" ColumnName="DatEntrega" />
+                <ScalarProperty Name="DatTroca" ColumnName="DatTroca" />
+                <ScalarProperty Name="FuncionarioId" ColumnName="FuncionarioId" />
+                <ScalarProperty Name="EpiId" ColumnName="EpiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
