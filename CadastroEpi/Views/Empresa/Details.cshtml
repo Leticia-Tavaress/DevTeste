@@ -1,0 +1,42 @@
+﻿@model CadastroEpi.Domain.Model.Empresa
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">Razão Social</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RazaoSocial)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">Tipo de Identificador</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoIdentificador)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">Identificador</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identificador)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EmpresaId }) |
+    @Html.ActionLink("Mostrar listagem de empresas", "Index")
+</p>

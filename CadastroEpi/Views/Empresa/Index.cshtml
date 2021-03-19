@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CadastroEpi.Domain.Model.Empresa>
+
+@{
+    ViewBag.Title = "Listagem da Empresa";
+}
+
+<h2>Listagem das Empresas</h2>
+
+<p>
+    @Html.ActionLink("Novo Cadastro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Razão Social</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Tipo de Identificador</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Identificador</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazaoSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoIdentificador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identificador)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.EmpresaId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.EmpresaId }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.EmpresaId })
+        </td>
+    </tr>
+}
+
+</table>

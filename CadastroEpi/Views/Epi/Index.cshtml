@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CadastroEpi.Domain.Model.Epi>
+
+@{
+    ViewBag.Title = "Listagem De Epis";
+}
+
+<h2>Listagem De EPIs</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Numeração EPI</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Nome EPI</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Data de inclusão</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Data de validade </label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumCa)
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Número do processo</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">Fabricante</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput" class="form-label">CPNJ do fabricante</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.EpiId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomEpi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DatInclusao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DatValidade)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumCa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumProcesso)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomFabricante)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CnpjFabricante)
+    </td>
+
+</tr>
+}
+
+</table>

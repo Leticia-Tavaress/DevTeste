@@ -1,0 +1,42 @@
+﻿@model CadastroEpi.Domain.Model.Funcao
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Função</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="exampleFormControlInput1" class="form-label">Razão Social</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.RazaoSocial)
+        </dd>
+
+        <dt>
+            <label for="exampleFormControlInput1" class="form-label">EPI</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EpiId)
+        </dd>
+
+        <dt>
+            <label for="exampleFormControlInput1" class="form-label">Função</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeFuncao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FuncaoId }) |
+    @Html.ActionLink("Mostrar listagem de funções", "Index")
+</p>

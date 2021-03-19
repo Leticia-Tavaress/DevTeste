@@ -64,11 +64,7 @@ namespace CadastroEpi.Db
 
         #endregion
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-
-            //throw new UnintentionalCodeFirstException();
-        }
+        
 
     
         /// <summary>
@@ -95,5 +91,13 @@ namespace CadastroEpi.Db
         /// There are no comments for FuncionarioEpi in the schema.
         /// </summary>
         public virtual DbSet<FuncionarioEpi> FuncionarioEpis { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
+
     }
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CadastroEpi.Domain.Model.Funcao>
+
+@{
+    ViewBag.Title = "Cadastro de Funções";
+}
+
+<h2>Cadastro de Funções</h2>
+
+<p>
+    @Html.ActionLink("Novo Cadastro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label for="exampleFormControlInput1" class="form-label">Razão Social</label>
+        </th>
+        <th>
+            <label for="exampleFormControlInput1" class="form-label">Numeração do EPI associado a função</label>
+        </th>
+        <th>
+            <label for="exampleFormControlInput1" class="form-label">Nome da Função</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa.RazaoSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EpiId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeFuncao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.FuncaoId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.FuncaoId }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.FuncaoId })
+        </td>
+    </tr>
+}
+
+</table>

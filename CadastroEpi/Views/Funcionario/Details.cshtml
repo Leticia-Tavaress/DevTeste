@@ -1,0 +1,42 @@
+﻿@model CadastroEpi.Domain.Model.Funcionario
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Funcionário</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">Função</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcao.NomeFuncao)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">Funcionário</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeFuncionario)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput" class="form-label">CPF</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FuncionarioId }) |
+    @Html.ActionLink("Mostrar listagem de funcionários", "Index")
+</p>

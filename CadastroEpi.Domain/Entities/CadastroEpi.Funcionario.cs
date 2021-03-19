@@ -90,9 +90,14 @@ namespace CadastroEpi.Domain.Model
             get;
             set;
         }
+        public virtual ICollection<Epi> Epis
+        {
+            get;
+            set;
+        }
 
         #endregion
-    
+
         #region Extensibility Method Definitions
         partial void OnCreated();
         #endregion

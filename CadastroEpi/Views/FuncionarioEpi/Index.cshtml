@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CadastroEpi.Domain.Model.FuncionarioEpi>
+
+@{
+    ViewBag.Title = "Associação de Funcionáro com Epi";
+}
+
+<h2>Associação de Funcionáro com Epi</h2>
+
+<p>
+    @Html.ActionLink("Novo Cadastro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label for="formGroupExampleInput2" class="form-label">EPI</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput2" class="form-label">Funcionário</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput2" class="form-label">Data Entrega</label>
+        </th>
+        <th>
+            <label for="formGroupExampleInput2" class="form-label">Data Troca</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Epi.NomEpi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Funcionario.NomeFuncionario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatTroca)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.FuncionarioEpiId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.FuncionarioEpiId }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.FuncionarioEpiId })
+        </td>
+    </tr>
+}
+
+</table>

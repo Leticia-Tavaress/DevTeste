@@ -1,0 +1,50 @@
+﻿@model CadastroEpi.Domain.Model.FuncionarioEpi
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Associação de Funcionáro com Epi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label for="formGroupExampleInput2" class="form-label">EPI</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Epi.NomEpi)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput2" class="form-label">Funcionário</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.NomeFuncionario)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput2" class="form-label">Data Entrega</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatEntrega)
+        </dd>
+
+        <dt>
+            <label for="formGroupExampleInput2" class="form-label">Data Troca</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatTroca)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.FuncionarioEpiId }) |
+    @Html.ActionLink("Mostrar listagem", "Index")
+</p>

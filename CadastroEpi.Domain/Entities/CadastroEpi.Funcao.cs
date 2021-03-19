@@ -57,12 +57,17 @@ namespace CadastroEpi.Domain.Model
             get;
             set;
         }
+        public virtual int EpiId
+        {
+            get;
+            set;
+        }
 
 
         #endregion
 
         #region Navigation Properties
-    
+
         /// <summary>
         /// There are no comments for Empresa in the schema.
         /// </summary>
@@ -71,7 +76,14 @@ namespace CadastroEpi.Domain.Model
             get;
             set;
         }
-    
+
+        
+        public virtual Epi Epi
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// There are no comments for Funcionarios in the schema.
         /// </summary>
@@ -80,9 +92,14 @@ namespace CadastroEpi.Domain.Model
             get;
             set;
         }
+        public virtual ICollection<Epi> Epis
+        {
+            get;
+            set;
+        }
 
         #endregion
-    
+
         #region Extensibility Method Definitions
         partial void OnCreated();
         #endregion
