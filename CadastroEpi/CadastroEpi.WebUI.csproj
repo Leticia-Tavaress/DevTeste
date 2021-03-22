@@ -265,6 +265,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CadastroEpi-20180419114826.mdf" />
+    <Content Include="App_Data\aspnet-CadastroEpi-20180419114826_log.ldf">
+      <DependentUpon>aspnet-CadastroEpi-20180419114826.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -389,9 +393,7 @@
     <Content Include="Views\Epi\Index.cshtml" />
     <Content Include="Views\FuncaoFun\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CadastroEpi.Domain\CadastroEpi.Domain.csproj">
       <Project>{421b3973-495f-451f-869c-b13af8822919}</Project>
